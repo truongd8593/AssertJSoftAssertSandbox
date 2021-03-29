@@ -22,7 +22,7 @@ public class main {
         softAssertions.assertThat(actual.size() == expected.size(), "Length of two string arrays is not equal").isTrue();
 
         for (int i = 0; i < expected.size(); i++) {
-            softAssertions.assertThat(actual.get(i).equalsIgnoreCase(expected.get(i)), "failed at index " + i).isTrue();
+            softAssertions.assertThat(actual.get(i).equalsIgnoreCase(expected.get(i)), actual.get(i) + " is different from " + expected.get(i)).isTrue();
         }
 
         softAssertions.assertAll();
