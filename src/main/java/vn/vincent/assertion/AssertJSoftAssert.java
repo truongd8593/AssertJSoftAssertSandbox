@@ -6,20 +6,20 @@ import org.assertj.core.api.SoftAssertions;
 
 public class AssertJSoftAssert extends SoftAssertions implements AssertJSoftAssertion {
 
-    private void checkFailure(String onFailureMsg) {
+    private void checkFailure(BooleanAssert assertion, String onFailureMsg) {
         if(!wasSuccess()) {
-            onFailure(onFailureMsg);
+            onFailure(assertion, onFailureMsg);
         }
     }
 
-    private void onFailure(String onFailureMsg) {
-        System.out.println(onFailureMsg);
+    private void onFailure(BooleanAssert assertion, String onFailureMsg) {
+        assertion.overridingErrorMessage(onFailureMsg);
     }
 
     public BooleanAssert assertThat(boolean actual, String onFailureMsg) {
         BooleanAssert assertion = super.assertThat(actual);
 
-        checkFailure(onFailureMsg);
+        checkFailure(assertion, onFailureMsg);
         return assertion;
     }
 
